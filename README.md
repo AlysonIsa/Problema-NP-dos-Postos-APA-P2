@@ -7,7 +7,8 @@ A data de entrega é **01/07/2026**.
 Integrantes: Alyson Valério Isaluski, Atos Aires Arrudo, Leandro Hyeda Martins, Rainier Ryu Waki
 
 
-Organização dos arquivos:
+
+## Organização dos arquivos:
 
 **solutionA**: Script Python - Resolve o problema A, imprimindo a solução na tela e gerando seu arquivo dimacs
 
@@ -15,11 +16,16 @@ Organização dos arquivos:
 
 **referencias/**: Diretorio - Contém enunciado do problema em pdf, LEIA-ME com informações do problema e testes, e arquivos .col com alguns exemplos de grafo usados para teste de avaliação.
 
+
+
+## Execução e geração de imagem do grafo (sem compilação pq python lixo usa interpretador, ent não precisa)
+
 ### Rodar Script da solução para o problema 1 (Postos A)
 
 ```python3 solutionA.py <dimacs_file_path>```
 
 exemplo de <dimacs_file_path>: /home/user/Documentos/P01_completo_12.col
+
 
 
 ### Converter .col para .dot
