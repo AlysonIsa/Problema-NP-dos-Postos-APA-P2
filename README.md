@@ -1,5 +1,8 @@
 # Projeto de Análise e Projeto de Algorirmos - Problema dos postos A e B
 
+O problema dos parques (tanto A quanto B) é um problema NP completo, ou seja, é muito difícil de resolver (impossível?). A intenção desse projeto é tentar achar uma solução melhor que forma bruta,
+e então entrgar esse projeto para correção, visto que essa entrega vale a nota da P@ na disciplina de de Análise e Projeto de Algorirmos
+
 O projeto a ser entregado (codigo, relatorio, testes, anexos, etc) será inteiramente organizado neste repositório.
 
 A data de entrega é **01/07/2026**.
@@ -8,7 +11,7 @@ Integrantes: Alyson Valério Isaluski, Atos Aires Arrudo, Leandro Hyeda Martins,
 
 
 
-## Organização dos arquivos:
+## Organização dos arquivos com explicação:
 
 **solutionA**: Script Python - Resolve o problema A, imprimindo a solução na tela e gerando seu arquivo dimacs
 
@@ -40,7 +43,7 @@ exemplo de <dimacs_file_path>: /home/user/Documentos/result.col
 
 
 ### Instalar Visualizador de Grafo GraphViz (Windows, Linux ou Mac)
-https://graphviz.org/download/s
+https://graphviz.org/download/
 
 
 ### Desenhar grafo com GraphViz
