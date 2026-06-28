@@ -5,9 +5,9 @@ O projeto a ser entregado (codigo, relatorio, testes, anexos, etc) será inteira
 Integrantes: Alyson Valério Isaluski, Atos Aires Arrudo, Leandro Hyeda Martins, Rainier Ryu Waki
 
 
-### Rodar Script principal
+### Rodar Script da solução para o problema 1 (Postos A)
 
-```python3 main.py <dimacs_file_path>```
+```python3 solutionA.py <dimacs_file_path>```
 
 exemplo de <dimacs_file_path>: /home/user/Documentos/grafo.col
 
