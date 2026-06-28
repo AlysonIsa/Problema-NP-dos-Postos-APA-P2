@@ -1,0 +1,340 @@
+
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[brazil]{babel}
+\usepackage{lmodern}
+\usepackage{geometry}
+\usepackage{amsmath,amssymb}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{listings}
+\usepackage{hyperref}
+\usepackage{microtype}
+\usepackage{array}
+\usepackage{fancyhdr}
+
+\geometry{margin=2.5cm}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Análise e Projeto de Algoritmos}
+\rhead{Trabalho Prático}
+\cfoot{\thepage}
+
+\setlist[itemize]{topsep=3pt,itemsep=2pt,parsep=0pt}
+\setlist[enumerate]{topsep=3pt,itemsep=2pt,parsep=0pt}
+
+\lstset{
+    basicstyle=\ttfamily\small,
+    frame=single,
+    columns=fullflexible,
+    keepspaces=true,
+    showstringspaces=false,
+    breaklines=true
+}
+
+\begin{document}
+
+\begin{center}
+    {\Large \textbf{Análise e Projeto de Algoritmos}}\\[0.5em]
+    {\large \textbf{Trabalho Prático}}\\[0.5em]
+    {\LARGE \textbf{Seleção de Postos Centrais de Monitoramento}}
+\end{center}
+
+\section{Contexto}
+
+Um parque florestal possui postos de monitoramento distribuídos em sua área. Cada posto conta com câmeras, sensores e equipamentos de comunicação.
+
+Devido à vegetação, ao relevo e à distância entre os equipamentos, nem todos os postos conseguem comunicar-se diretamente. Quando dois postos possuem comunicação direta, eles podem compartilhar alertas e informações.
+
+Alguns postos serão escolhidos como \textbf{centrais de monitoramento}. Uma central é responsável por receber, consolidar e encaminhar os alertas dos postos diretamente conectados a ela.
+
+Cada posto deve satisfazer pelo menos uma das seguintes condições:
+
+\begin{itemize}
+    \item ser escolhido como central; ou
+    \item possuir comunicação direta com pelo menos uma central.
+\end{itemize}
+
+O objetivo é escolher a menor quantidade possível de postos centrais.
+
+\section{Representação}
+
+A rede será representada por um grafo simples e não direcionado
+\[
+G=(V,E),
+\]
+em que cada vértice representa um posto e cada aresta representa uma comunicação direta.
+
+Uma solução é um conjunto
+\[
+D\subseteq V
+\]
+tal que, para todo vértice $v\in V$,
+\[
+v\in D
+\]
+ou existe $u\in D$ tal que
+\[
+\{u,v\}\in E.
+\]
+
+O objetivo é minimizar
+\[
+|D|.
+\]
+
+\section{Parte A -- Parque geral}
+
+Nesta parte, a disposição dos postos é arbitrária.
+
+O grupo deverá desenvolver e implementar um \textbf{algoritmo exato} para encontrar uma solução de cardinalidade mínima.
+
+Um algoritmo exato deve:
+
+\begin{enumerate}
+    \item produzir uma solução válida;
+    \item garantir que nenhuma solução menor existe;
+    \item terminar para toda entrada válida, ainda que o tempo de execução possa ser elevado.
+\end{enumerate}
+
+Não será indicada uma técnica específica. O grupo deverá decidir como representar e examinar as possíveis soluções.
+
+\subsection{Entrada}
+
+O programa deverá aceitar o formato DIMACS:
+
+\begin{lstlisting}
+c comentario
+p edge n m
+e u1 v1
+e u2 v2
+...
+e um vm
+\end{lstlisting}
+
+Os vértices serão identificados por
+\[
+1,2,\ldots,n.
+\]
+
+O grafo poderá ser desconexo.
+
+\subsection{Saída}
+
+O programa deverá apresentar:
+
+\begin{itemize}
+    \item o tamanho da melhor solução encontrada;
+    \item os postos escolhidos;
+    \item se a otimalidade foi comprovada;
+    \item o tempo de execução;
+    \item o motivo da interrupção, quando aplicável.
+\end{itemize}
+
+Exemplo:
+
+\begin{lstlisting}
+Quantidade minima de centrais: 2
+Postos escolhidos: 1 4
+Otimalidade comprovada: sim
+Tempo de execucao: 0.00231 segundos
+\end{lstlisting}
+
+Caso o limite de tempo seja atingido:
+
+\begin{lstlisting}
+Melhor solucao encontrada: 37
+Otimalidade comprovada: nao
+Tempo de execucao: 600.000 segundos
+Motivo da interrupcao: limite de tempo
+\end{lstlisting}
+
+\subsection{Testes da Parte A}
+
+Todos os grupos deverão utilizar o mesmo conjunto de instâncias fornecido pela professora.
+
+As instâncias incluem:
+
+\begin{itemize}
+    \item grafos completos;
+    \item grafos sem arestas;
+    \item estrelas;
+    \item caminhos;
+    \item ciclos;
+    \item grafos desconexos;
+    \item grafos aleatórios;
+    \item grafos esparsos e aproximadamente regulares;
+    \item uma instância grande para observar os limites práticos da solução exata.
+\end{itemize}
+
+Não se espera que todas as instâncias grandes sejam resolvidas com otimalidade comprovada.
+
+\section{Parte B -- Parque linear}
+
+Considere agora um segundo parque, longo e estreito, com uma única trilha principal.
+
+Cada posto monitora um trecho contínuo da trilha, determinado por duas posições:
+\[
+\ell_i \leq r_i.
+\]
+
+Dois postos comunicam-se diretamente quando existe pelo menos uma posição monitorada por ambos.
+
+O objetivo continua sendo escolher o menor número possível de centrais.
+
+\subsection{Atividades da Parte B}
+
+O grupo deverá:
+
+\begin{enumerate}
+    \item aplicar o algoritmo da Parte A às instâncias do parque linear;
+    \item analisar quais propriedades adicionais aparecem devido à disposição dos postos;
+    \item investigar um algoritmo exato que explore diretamente essa estrutura;
+    \item comparar o novo algoritmo com o algoritmo geral.
+\end{enumerate}
+
+Como orientação, o grupo poderá investigar:
+
+\begin{itemize}
+    \item projeto por indução;
+    \item programação dinâmica;
+    \item estratégia gulosa.
+\end{itemize}
+
+Não é necessário implementar uma solução baseada em cada paradigma. O grupo deverá escolher e justificar a abordagem considerada mais adequada.
+
+\subsection{Requisitos teóricos}
+
+Para o algoritmo desenvolvido na Parte B, o grupo deverá apresentar:
+
+\begin{itemize}
+    \item pseudocódigo;
+    \item prova de que todos os postos são atendidos;
+    \item prova de que a solução é mínima;
+    \item análise de complexidade;
+    \item pelo menos um contraexemplo para uma estratégia intuitiva que não produza sempre uma solução ótima.
+\end{itemize}
+
+A análise deverá responder se o novo algoritmo permanece exponencial ou se passa a ser polinomial.
+
+\subsection{Testes da Parte B}
+
+Cada instância será fornecida em dois formatos:
+
+\begin{itemize}
+    \item arquivo \texttt{.col}, contendo o grafo;
+    \item arquivo \texttt{.intervalos.txt}, contendo os extremos dos trechos.
+\end{itemize}
+
+O formato do segundo arquivo será:
+
+\begin{lstlisting}
+posto inicio fim
+\end{lstlisting}
+
+\section{Protocolo de medição}
+
+O limite máximo de cada execução será de
+\[
+600\text{ segundos}.
+\]
+
+O algoritmo deverá ser executado de forma sequencial, utilizando apenas uma thread.
+
+Antes das medições, o grupo deverá:
+
+\begin{itemize}
+    \item encerrar programas desnecessários;
+    \item não executar diferentes instâncias simultaneamente;
+    \item não realizar outras tarefas durante a execução;
+    \item utilizar a mesma máquina e as mesmas opções de compilação nos testes comparados;
+    \item manter o computador conectado à energia elétrica;
+    \item evitar modos de economia de energia.
+\end{itemize}
+
+Não será exigida a limpeza manual dos caches do processador ou do sistema operacional.
+
+Cada instância concluída deverá possuir uma execução de aquecimento, não registrada, seguida de pelo menos três execuções oficiais.
+
+O tempo deverá ser medido com relógio monotônico de alta resolução, por exemplo:
+
+\begin{itemize}
+    \item \texttt{std::chrono::steady\_clock}, em C++;
+    \item \texttt{System.nanoTime()}, em Java;
+    \item \texttt{time.perf\_counter()}, em Python.
+\end{itemize}
+
+O valor principal apresentado deverá ser a mediana das execuções.
+
+Instâncias que atinjam 600 segundos não precisam ser repetidas.
+
+\section{Relatório}
+
+O relatório deverá conter:
+
+\begin{enumerate}
+    \item modelagem do problema;
+    \item descrição e pseudocódigo do algoritmo da Parte A;
+    \item prova de correção da Parte A;
+    \item análise de tempo e espaço da Parte A;
+    \item resultados experimentais da Parte A;
+    \item descrição da estrutura do parque linear;
+    \item algoritmo proposto para a Parte B;
+    \item prova de correção e de otimalidade da Parte B;
+    \item análise de complexidade da Parte B;
+    \item comparação experimental entre os algoritmos;
+    \item dificuldades, erros e decisões tomadas durante o desenvolvimento.
+\end{enumerate}
+
+O relatório poderá ter entre 6 e 10 páginas, sem contar capa, referências e anexos.
+
+\section{Arquivos a entregar}
+
+A entrega deverá conter:
+
+\begin{enumerate}
+    \item código-fonte;
+    \item instruções de compilação e execução;
+    \item relatório em PDF;
+    \item arquivo com os resultados brutos;
+    \item identificação dos integrantes.
+\end{enumerate}
+
+Não será permitido utilizar bibliotecas que resolvam diretamente o problema de otimização.
+
+\section{Critérios de avaliação}
+
+\begin{center}
+\begin{tabular}{>{\raggedright\arraybackslash}p{10cm}r}
+\toprule
+\textbf{Critério} & \textbf{Peso} \\
+\midrule
+Correção e exatidão do algoritmo geral & 25\% \\
+Prova e análise de complexidade da Parte A & 15\% \\
+Análise experimental da Parte A & 15\% \\
+Algoritmo especializado para o parque linear & 20\% \\
+Prova e análise de complexidade da Parte B & 15\% \\
+Organização, clareza e reprodutibilidade & 10\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Observações finais}
+
+\begin{itemize}
+    \item Toda fonte consultada deverá ser citada.
+    \item O grupo deverá compreender integralmente o código entregue.
+    \item Qualquer integrante poderá ser solicitado a explicar uma parte do algoritmo ou justificar a resposta produzida.
+    \item Encontrar uma solução válida não é suficiente: quando uma solução for declarada ótima, sua otimalidade deverá estar comprovada.
+\end{itemize}
+
+\end{document}

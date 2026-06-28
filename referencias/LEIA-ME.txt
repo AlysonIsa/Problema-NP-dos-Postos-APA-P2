@@ -1,0 +1,19 @@
+CONJUNTO DE TESTES — POSTOS DE MONITORAMENTO
+
+PARTE A — PARQUE GERAL
+P01 a P05: verificação de correção.
+P07: grafo desconexo.
+P11 e P13: grafos aleatórios com densidades diferentes.
+P15: grafo esparso aproximadamente regular.
+P17: instância grande para observar os limites práticos da solução exata.
+
+PARTE B — PARQUE LINEAR
+Cada instância possui:
+- arquivo .col com o grafo em formato DIMACS;
+- arquivo .intervalos.txt com o posto e os extremos do trecho monitorado.
+
+Formato:
+posto inicio fim
+
+O limite por execução é de 600 segundos.
+Não se espera que o algoritmo geral conclua todas as instâncias grandes.
