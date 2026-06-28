@@ -13,7 +13,7 @@ Integrantes: Alyson Valério Isaluski, Atos Aires Arrudo, Leandro Hyeda Martins,
 
 ## Organização dos arquivos com explicação:
 
-**solutionA**: Script Python - Resolve o problema A, imprimindo a solução na tela e gerando seu arquivo dimacs
+**solutionA**: Script Python - Resolve o problema A, imprimindo a solução na tela e gerando seu arquivo dimacs, com as centrais incluídas como comentário
 
 **convert.py**: Script Python - Converte Dimacs para arquivo Dot, o qual Graphviz consegue gerar uma representação visual do grafo, com centrais
 
