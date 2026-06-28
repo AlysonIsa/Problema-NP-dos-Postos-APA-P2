@@ -1,5 +1,7 @@
 # Usar time.perf_counter()
 
+finalGraph = []
+
 def readDimacsGraph(file_path):
     graph_data = {
         "num_nodes": 0,
@@ -28,6 +30,7 @@ def readDimacsGraph(file_path):
                 graph_data['edges'].append((u, v))
 
     return graph_data
+
 
 import sys
 
