@@ -1,7 +1,7 @@
-# Projeto de Análise e Projeto de Algorirmos - Problema dos postos A e B
+# Projeto de Análise e Projeto de Algoritmos - Problema dos postos A e B
 
 O problema dos parques (tanto A quanto B) é um problema NP completo, ou seja, é muito difícil de resolver (impossível?). A intenção desse projeto é tentar achar uma solução melhor que forma bruta,
-e então entrgar esse projeto para correção, visto que essa entrega vale a nota da P@ na disciplina de de Análise e Projeto de Algorirmos
+e então entrgar esse projeto para correção, visto que essa entrega vale a nota da P2 na disciplina de de Análise e Projeto de Algoritmos.
 
 O projeto a ser entregado (codigo, relatorio, testes, anexos, etc) será inteiramente organizado neste repositório.
 
