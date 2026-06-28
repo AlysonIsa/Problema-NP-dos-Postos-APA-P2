@@ -1,5 +1,6 @@
 # Usar time.perf_counter() para testar performance
 
+# Dimacs to graph_data
 def readDimacsGraph(file_path):
     graph_data = {
         "num_nodes": 0,
@@ -29,6 +30,27 @@ def readDimacsGraph(file_path):
                 graph_data['edges'].append((u, v))
 
     return graph_data
+
+# graph_data to Dimacs
+def writeDimacsGraph(graph_data, output_file_path):
+    with open(output_file_path, 'w') as file:
+        file.write("c Arquivo gerado a partir do dicionario graph_data\n")
+        
+        # Salva as centrais como comentários (ex: "c centrais 1 5 12")
+        if graph_data.get('centrais'):
+            centrais_str = " ".join(map(str, graph_data['centrais']))
+            file.write(f"c centrais {centrais_str}\n")
+            
+        prob_type = graph_data.get('problem_type') or 'edge'
+        n = graph_data.get('num_nodes', 0)
+        m = graph_data.get('num_edges', 0)
+        file.write(f"p {prob_type} {n} {m}\n")
+        
+        for u, v in graph_data.get('edges', []):
+            file.write(f"e {u} {v}\n")
+            
+    print(f"Grafo salvo com sucesso em: {output_file_path}")
+
 
 # Pruning: Reduz o grafo resultado G do problema A para δ >= 2, onde δ é o grau mínimo de G
 # Altera grafo resultado, colocando os postos com 100% de corretude

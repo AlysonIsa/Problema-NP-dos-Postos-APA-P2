@@ -2,7 +2,18 @@
 
 O projeto a ser entregado (codigo, relatorio, testes, anexos, etc) será inteiramente organizado neste repositório.
 
+A data de entrega é **01/07/2026**.
+
 Integrantes: Alyson Valério Isaluski, Atos Aires Arrudo, Leandro Hyeda Martins, Rainier Ryu Waki
+
+
+Organização dos arquivos:
+
+**solutionA**: Script Python - Resolve o problema A, imprimindo a solução na tela e gerando seu arquivo dimacs
+
+**convert.py**: Script Python - Converte Dimacs para arquivo Dot, o qual Graphviz consegue gerar uma representação visual do grafo, com centrais
+
+**referencias/**: Diretorio - Contém enunciado do problema em pdf, LEIA-ME com informações do problema e testes, e arquivos .col com alguns exemplos de grafo usados para teste de avaliação.
 
 
 ### Rodar Script da solução para o problema 1 (Postos A)
@@ -16,14 +27,18 @@ exemplo de <dimacs_file_path>: /home/user/Documentos/grafo.col
 
 ```python3 convert.py <dimacs_file_path>```
 
+ou se quiser marcar centrais específicas para teste (ex: marcar 3, 7 e 12 como centrais manualmente):
+
+```python3 convert.py <dimacs_file_path> 3 7 12``` 
+
 exemplo de <dimacs_file_path>: /home/user/Documentos/grafo.col
 
 
-### Instalar Visualizador de Grafo GraphViz
+### Instalar Visualizador de Grafo GraphViz (Windows, Linux ou Mac)
 https://graphviz.org/download/s
 
 
-### Desenhar grafo
+### Desenhar grafo com GraphViz
 
 ```neato -Tpng <dot_file_name> -o <output_image_file_name> -Goverlap=scale```
 
