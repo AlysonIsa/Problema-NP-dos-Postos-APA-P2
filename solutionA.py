@@ -1,5 +1,8 @@
 # Usar time.perf_counter() para testar performance
 
+import os
+import sys
+
 # Dimacs to graph_data
 def readDimacsGraph(file_path):
     graph_data = {
@@ -32,7 +35,13 @@ def readDimacsGraph(file_path):
     return graph_data
 
 # graph_data to Dimacs
-def writeDimacsGraph(graph_data, output_file_path):
+def writeDimacsGraph(graph_data, file_name):
+
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    
+    output_filename = f"{file_name}"
+    output_file_path = os.path.join(script_dir, output_filename)
+
     with open(output_file_path, 'w') as file:
         file.write("c Arquivo gerado a partir do dicionario graph_data\n")
         
@@ -58,18 +67,17 @@ def writeDimacsGraph(graph_data, output_file_path):
 # Lógica da função recursiva prune:
 # Seja d o grau do vértice e g o grafo da iteração atual de prune(g)
 # Passo 1. 'return' se g é vazio
-# Passo 2. Coloque em G central em todos os vértices isolados de g (d = 0)
-# Passo 3. Coloque em G central em todos os vizinhos de vértices folhas sem centrais de g (d = 1)
-# Passo 4. Gere um subgrafo g' (pruned) sem os vércices de g que é central ou vizinho de central
-# Passo 5. Chame prune(g')
+# Passo 2. Coloca em G central em todos os vértices isolados de g (d = 0)
+# Passo 3. Coloca em G central em todos os vizinhos de vértices folhas sem centrais de g (d = 1)
+# Passo 4. Gera um subgrafo g' (pruned) sem os vércices de g que é central ou vizinho de central
+# Passo 5. Chama prune(g')
 
 def prune(g):
-    # Instrução para adicionar central em G
+    # Instrução para adicionar central em G:
     # finalGraph['centrais'].append(<numeroDoGrafo>)
+
+    # TODO implemntar essa função - Falta escolher estrutura de dados
     pass
-
-
-import sys
 
 if(len(sys.argv) <= 1):
     print("Erro. Nenhum caminho de arquivo Dimacs informado.")
@@ -79,7 +87,10 @@ path = sys.argv[1]
 
 resultG = readDimacsGraph(path)
 
-
-prune(resultG) # Coloca centrais trivias em G ( δ(pruned(G)) < 2 )
+# Coloca centrais trivias em G ( δ(pruned(G)) < 2 )
+prune(resultG)
 
 print(resultG)
+
+# Cria arquivo dimacs resultado, com centrais em comentário
+writeDimacsGraph(resultG, "result.col")
