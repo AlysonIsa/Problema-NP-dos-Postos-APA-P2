@@ -1,68 +1,111 @@
-# Projeto de Análise e Projeto de Algoritmos - Problema dos postos A e B
+# Projeto de Análise e Projeto de Algoritmos - Problema dos Postos de Monitoramento (A e B)
 
-O problema dos parques (tanto A quanto B) é um problema NP completo, ou seja, é muito difícil de resolver (impossível?). A intenção desse projeto é tentar achar uma solução melhor que forma bruta,
-e então entrgar esse projeto para correção, visto que essa entrega vale a nota da P2 na disciplina de de Análise e Projeto de Algoritmos.
+O projeto aborda o problema de encontrar o menor número de centrais de monitoramento (Conjunto Dominante Mínimo) em duas disposições diferentes de parques florestais:
 
-O projeto a ser entregado (codigo, relatorio, testes, anexos, etc) será inteiramente organizado neste repositório.
+* **Parte A (Parque Geral):** A disposição dos postos é arbitrária. A modelagem recai sobre o problema do Conjunto Dominante Mínimo em grafos gerais, que é um problema **NP-Difícil**. A solução implementada utiliza um algoritmo exato de **Branch and Bound** (com podas por tamanho e viabilidade de cobertura) para encontrar a resposta ótima.
+* **Parte B (Parque Linear):** O parque é uma trilha contínua, modelado como um **Grafo de Intervalos**. Ao explorar essa característica estrutural, o problema deixa de ser NP-Difícil. Implementamos um **Algoritmo Guloso** exato que resolve a instância em tempo polinomial ($O(n \log n)$), garantindo otimalidade.
+
+Este repositório contém todo o código-fonte, relatórios, testes e utilitários de visualização.
 
 A data de entrega é **01/07/2026**.
 
-Integrantes: Alyson Valério Isaluski, Atos Aires Arrudo, Leandro Hyeda Martins, Rainier Ryu Waki
+**Integrantes:** Alyson Valério Isaluski, Atos Aires Arrudo, Leandro Hyeda Martins, Rainier Ryu Waki
 
+---
 
+## 📁 Organização dos Arquivos
 
-## Organização dos arquivos com explicação:
+* `solutionA.py`: Script Python - Resolve o problema A (Grafo Geral) lendo arquivos `.col`. Imprime as métricas no terminal e gera um arquivo `result.col` com as centrais escolhidas em formato de comentário.
+* `solutionB.py`: Script Python - Resolve o problema B (Parque Linear) lendo arquivos `.intervalos.txt`. Utiliza estratégia gulosa de varredura para selecionar as centrais ótimas de forma muito rápida.
+* `convert.py`: Script Python - Converte arquivos DIMACS (`.col`) para o formato `.dot`, permitindo gerar uma representação visual do grafo (com as centrais destacadas) usando Graphviz.
+* `referencias/`: Diretório - Contém o enunciado do problema em PDF, informações complementares de testes e instâncias de grafos (`.col` e `.intervalos.txt`) fornecidas para avaliação.
 
-**solutionA**: Script Python - Resolve o problema A, imprimindo a solução na tela e gerando seu arquivo dimacs, com as centrais incluídas como comentário
+---
 
-**convert.py**: Script Python - Converte Dimacs para arquivo Dot, o qual Graphviz consegue gerar uma representação visual do grafo, com centrais
+## 🚀 Execução e Interpretação dos Resultados
 
-**referencias/**: Diretorio - Contém enunciado do problema em pdf, LEIA-ME com informações do problema e testes, e arquivos .col com alguns exemplos de grafo usados para teste de avaliação.
+Os scripts são feitos em Python e não requerem compilação, basta rodá-los diretamente pelo interpretador.
 
+### 1. Rodar a Solução da Parte A (Parque Geral)
 
+O script requer um arquivo DIMACS de grafo como entrada.
 
-## Execução e geração de imagem do grafo (sem compilação pq python lixo usa interpretador, ent não precisa)
+```bash
+python3 solutionA.py <caminho_arquivo.col>
 
-### Rodar Script da solução para o problema 1 (Postos A)
+```
 
-```python3 solutionA.py <dimacs_file_path>```
+**Exemplo:**
 
-exemplo de <dimacs_file_path>: /home/user/Documentos/P01_completo_12.col
+```bash
+python3 solutionA.py /home/user/Documentos/P01_completo_12.col
 
+```
 
+**Interpretação da Saída:**
+O terminal exibirá a quantidade mínima de centrais, a lista de postos escolhidos, a validação de otimalidade e o tempo exato de execução utilizando o relógio monotônico de alta resolução.
+Adicionalmente, o script criará (ou sobrescreverá) um arquivo chamado **`result.col`** no mesmo diretório, contendo a estrutura do grafo e uma linha de comentário indicando as centrais (ex: `c centrais 1 5 12`), pronto para ser desenhado.
 
-### Converter .col para .dot
+---
 
-```python3 convert.py <dimacs_file_path>```
+### 2. Rodar a Solução da Parte B (Parque Linear)
 
-ou se quiser marcar centrais específicas para teste (ex: marcar 3, 7 e 12 como centrais manualmente):
+Para o parque linear, o algoritmo ignora as arestas e foca exclusivamente nas coordenadas geográficas dos postos. O script requer o arquivo de intervalos.
 
-```python3 convert.py <dimacs_file_path> 3 7 12``` 
+```bash
+python3 solutionB.py <caminho_arquivo.intervalos.txt>
 
-exemplo de <dimacs_file_path>: /home/user/Documentos/result.col
+```
 
+**Exemplo:**
 
-### Instalar Visualizador de Grafo GraphViz (Windows, Linux ou Mac)
-https://graphviz.org/download/
+```bash
+python3 solutionB.py /home/user/Documentos/P01_linear.intervalos.txt
 
+```
 
-### Desenhar grafo com GraphViz
+**Interpretação da Saída:**
+Similar à Parte A, o terminal exibirá a solução ótima e o tempo de execução. Note que o tempo de execução deste script deverá ser em frações de milissegundos comparado ao algoritmo da Parte A, provando a eficiência da exploração da estrutura de intervalos.
 
-```neato -Tpng <dot_file_name> -o <output_image_file_name> -Goverlap=scale```
+---
 
-exemplo de <dot_file_name>: result.dot
+## 🎨 Geração de Imagens do Grafo (Visualização)
 
-exemplo de <output_image_file_name>: grafo.png
+Para facilitar o entendimento e validar os resultados visualmente, você pode desenhar os grafos processados na Parte A.
 
+### Passo 1: Instalar o GraphViz
 
-<img width="323" height="314" alt="image" src="https://github.com/user-attachments/assets/2ab2d7d7-e789-4dec-b122-a6009f75d3b5" />
+Disponível para Windows, Linux e macOS.
+Download: https://graphviz.org/download/
 
-Imagem gerada pelo fluxo:
+### Passo 2: Converter `.col` para `.dot`
 
-```python3 solutionA.py /home/user/Documentos/parte_A_parque_geral/P01_completo_12.col```
+Utilize o grafo gerado pelo script da Parte A (`result.col`). O conversor lerá a linha de comentários e pintará os nós centrais de forma diferente.
 
-```python3 convert.py result.col 12```
+```bash
+python3 convert.py result.col
 
-```neato -Tpng result.dot -o grafo.png -Goverlap=scale```
+```
 
+*(Opcional)* Se quiser forçar o desenho de centrais específicas manualmente para testes:
 
+```bash
+python3 convert.py result.col 3 7 12
+
+```
+
+### Passo 3: Renderizar a Imagem (PNG)
+
+Com o Graphviz instalado, execute o seguinte comando no terminal para desenhar o grafo gerando os nós de forma não-sobreposta (`-Goverlap=scale`):
+
+```bash
+neato -Tpng result.dot -o grafo.png -Goverlap=scale
+
+```
+
+**Fluxo Completo de Exemplo (Parte A):**
+
+```bash
+python3 solutionA.py referencias/P01_completo_12.col
+python3 convert.py result.col
+neato -Tpng result.dot -o grafo.png -Goverlap=scale
