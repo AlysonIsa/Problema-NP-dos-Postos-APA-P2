@@ -60,23 +60,8 @@ def writeDimacsGraph(graph_data, file_name):
             
     print(f"Grafo salvo com sucesso em: {output_file_path}")
 
-
-# Pruning: Reduz o grafo resultado G do problema A para δ >= 2, onde δ é o grau mínimo de G
-# Altera grafo resultado, colocando os postos com 100% de corretude
-
-# Lógica da função recursiva prune:
-# Seja d o grau do vértice e g o grafo da iteração atual de prune(g)
-# Passo 1. 'return' se g é vazio
-# Passo 2. Coloca em G central em todos os vértices isolados de g (d = 0)
-# Passo 3. Coloca em G central em todos os vizinhos de vértices folhas sem centrais de g (d = 1)
-# Passo 4. Gera um subgrafo g' (pruned) sem os vércices de g que é central ou vizinho de central
-# Passo 5. Chama prune(g')
-
-def prune(g):
-    # Instrução para adicionar central em G:
-    # finalGraph['centrais'].append(<numeroDoGrafo>)
-
-    # TODO implemntar essa função - Falta escolher estrutura de dados
+# SOLUCAO AQUI
+def solve(g):
     pass
 
 if(len(sys.argv) <= 1):
@@ -87,8 +72,8 @@ path = sys.argv[1]
 
 resultG = readDimacsGraph(path)
 
-# Coloca centrais trivias em G ( δ(pruned(G)) < 2 )
-prune(resultG)
+# SOLUCAO AQUI
+solve(resultG)
 
 print(resultG)
 
