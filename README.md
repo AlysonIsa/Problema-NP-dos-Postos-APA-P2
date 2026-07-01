@@ -3,7 +3,7 @@
 O projeto aborda o problema de encontrar o menor número de centrais de monitoramento (Conjunto Dominante Mínimo) em duas disposições diferentes de parques florestais:
 
 * **Parte A (Parque Geral):** A disposição dos postos é arbitrária. A modelagem recai sobre o problema do Conjunto Dominante Mínimo em grafos gerais, que é um problema **NP-Difícil**. A solução implementada utiliza um algoritmo exato de **Branch and Bound** (com podas por tamanho e viabilidade de cobertura) para encontrar a resposta ótima.
-* **Parte B (Parque Linear):** O parque é uma trilha contínua, modelado como um **Grafo de Intervalos**. Ao explorar essa característica estrutural, o problema deixa de ser NP-Difícil. Implementamos um **Algoritmo Guloso** exato que resolve a instância em tempo polinomial ($O(n \log n)$), garantindo otimalidade.
+* **Parte B (Parque Linear):** O parque é uma trilha contínua, modelado como um **Grafo de Intervalos**. Ao explorar essa característica estrutural, o problema deixa de ser NP-Difícil. Implementamos um **Algoritmo Guloso** exato que resolve a instância em tempo polinomial O(nlog(n)), garantindo otimalidade.
 
 Este repositório contém todo o código-fonte, relatórios, testes e utilitários de visualização.
 
@@ -13,7 +13,7 @@ A data de entrega é **01/07/2026**.
 
 ---
 
-## 📁 Organização dos Arquivos
+## Organização dos Arquivos
 
 * `solutionA.py`: Script Python - Resolve o problema A (Grafo Geral) lendo arquivos `.col`. Imprime as métricas no terminal e gera um arquivo `result.col` com as centrais escolhidas em formato de comentário.
 * `solutionB.py`: Script Python - Resolve o problema B (Parque Linear) lendo arquivos `.intervalos.txt`. Utiliza estratégia gulosa de varredura para selecionar as centrais ótimas de forma muito rápida.
@@ -22,7 +22,7 @@ A data de entrega é **01/07/2026**.
 
 ---
 
-## 🚀 Execução e Interpretação dos Resultados
+## Execução e Interpretação dos Resultados
 
 Os scripts são feitos em Python e não requerem compilação, basta rodá-los diretamente pelo interpretador.
 
@@ -69,7 +69,7 @@ Similar à Parte A, o terminal exibirá a solução ótima e o tempo de execuç�
 
 ---
 
-## 🎨 Geração de Imagens do Grafo (Visualização)
+## Geração de Imagens do Grafo (Visualização)
 
 Para facilitar o entendimento e validar os resultados visualmente, você pode desenhar os grafos processados na Parte A.
 
