@@ -9,7 +9,7 @@ Este repositório contém todo o código-fonte, relatórios, testes e utilitári
 
 A data de entrega é **01/07/2026**.
 
-**Integrantes:** Alyson Valério Isaluski, Atos Aires Arrudo, Leandro Hyeda Martins, Rainier Ryu Waki
+**Integrantes:** Alyson Valério Isaluski, Atos Aires Arruda, Leandro Martins Hyeda, Rainier Ryu Waki
 
 ---
 
@@ -66,46 +66,3 @@ python3 solutionB.py /home/user/Documentos/P01_linear.intervalos.txt
 
 **Interpretação da Saída:**
 Similar à Parte A, o terminal exibirá a solução ótima e o tempo de execução. Note que o tempo de execução deste script deverá ser em frações de milissegundos comparado ao algoritmo da Parte A, provando a eficiência da exploração da estrutura de intervalos.
-
----
-
-## Geração de Imagens do Grafo (Visualização)
-
-Para facilitar o entendimento e validar os resultados visualmente, você pode desenhar os grafos processados na Parte A.
-
-### Passo 1: Instalar o GraphViz
-
-Disponível para Windows, Linux e macOS.
-Download: https://graphviz.org/download/
-
-### Passo 2: Converter `.col` para `.dot`
-
-Utilize o grafo gerado pelo script da Parte A (`result.col`). O conversor lerá a linha de comentários e pintará os nós centrais de forma diferente.
-
-```bash
-python3 convert.py result.col
-
-```
-
-*(Opcional)* Se quiser forçar o desenho de centrais específicas manualmente para testes:
-
-```bash
-python3 convert.py result.col 3 7 12
-
-```
-
-### Passo 3: Renderizar a Imagem (PNG)
-
-Com o Graphviz instalado, execute o seguinte comando no terminal para desenhar o grafo gerando os nós de forma não-sobreposta (`-Goverlap=scale`):
-
-```bash
-neato -Tpng result.dot -o grafo.png -Goverlap=scale
-
-```
-
-**Fluxo Completo de Exemplo (Parte A):**
-
-```bash
-python3 solutionA.py referencias/P01_completo_12.col
-python3 convert.py result.col
-neato -Tpng result.dot -o grafo.png -Goverlap=scale
